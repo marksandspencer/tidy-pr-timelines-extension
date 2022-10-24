@@ -8,7 +8,7 @@
     {
       "css": ["styles.css"],
       "js": ["filters.js", "content.js"],
-      "matches": ["https://github.com/DigitalInnovation/*"]
+      "matches": ["https://github.com/*"]
     }
   ],
   "action": {
