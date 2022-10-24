@@ -1,0 +1,39 @@
+.TimelineItem-Noise {
+    display: none !important;
+}
+
+#pr-noise-button {
+    position: fixed;
+    right: 10px;
+    bottom: 10px;
+    background: black;
+    color: white;
+    padding: 10px;
+    border: none;
+    display: flex;
+    align-items: center;
+    z-index: 100;
+}
+
+#pr-noise-button:hover, #pr-noise-button:focus {
+    text-decoration: underline;
+}
+
+#pr-noise-button span {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    margin-right: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#pr-noise-button span img {
+    width: 16px;
+    height: 16px;
+}
+
+#pr-noise-button span.pr-noise-active {
+    background-color: greenyellow;
+}

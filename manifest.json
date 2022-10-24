@@ -1,0 +1,32 @@
+{
+  "name": "Tidy PR Timelines",
+  "version": "1.0.0",
+  "author": "Andrea Caldera, Matt Woodage, Prabhat Thapa",
+  "description": "Hide unwanted PR timeline events in GitHub",
+  "manifest_version": 3,
+  "content_scripts": [
+    {
+      "css": ["styles.css"],
+      "js": ["filters.js", "content.js"],
+      "matches": ["https://github.com/DigitalInnovation/*"]
+    }
+  ],
+  "action": {
+    "default_icon": {
+      "32": "/images/32.png",
+      "48": "/images/48.png",
+      "128": "/images/128.png"
+    }
+  },
+  "icons": {
+    "32": "/images/32.png",
+    "48": "/images/48.png",
+    "128": "/images/128.png"
+  },
+  "web_accessible_resources": [
+    {
+      "resources": [ "images/loader.gif", "images/32.png" ],
+      "matches": ["https://github.com/*"]
+    }
+  ]
+}
