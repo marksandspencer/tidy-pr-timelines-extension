@@ -1,8 +1,8 @@
-.TimelineItem-Noise {
+.TimelineItem-Hidden {
     display: none !important;
 }
 
-#pr-noise-button {
+#tidy-timeline-button {
     position: fixed;
     right: 10px;
     bottom: 10px;
@@ -15,11 +15,11 @@
     z-index: 100;
 }
 
-#pr-noise-button:hover, #pr-noise-button:focus {
+#tidy-timeline-button:hover, #tidy-timeline-button:focus {
     text-decoration: underline;
 }
 
-#pr-noise-button span {
+#tidy-timeline-button span {
     width: 20px;
     height: 20px;
     border-radius: 50%;
@@ -27,13 +27,16 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: greenyellow;
 }
 
-#pr-noise-button span img {
+#tidy-timeline-button span img {
     width: 16px;
     height: 16px;
 }
 
-#pr-noise-button span.pr-noise-active {
-    background-color: greenyellow;
+#tidy-timeline-button > img {
+    margin-left: 8px;
+    width: 20px;
+    height: 20px;
 }
