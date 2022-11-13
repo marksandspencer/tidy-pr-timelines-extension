@@ -25,7 +25,7 @@
   },
   "web_accessible_resources": [
     {
-      "resources": [ "images/loader.gif", "images/32.png" ],
+      "resources": ["images/loader.gif", "images/32.png"],
       "matches": ["https://github.com/*"]
     }
   ]

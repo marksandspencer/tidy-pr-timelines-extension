@@ -1,11 +1,11 @@
 /* global chrome, PHRASES_TO_HIDE */
 
 (function () {
-  const itemClass = 'TimelineItem';
-  const itemHiddenClass = 'TimelineItem-Hidden';
-  const toggleButtonID = 'tidy-timeline-button';
+  const itemClass = "TimelineItem";
+  const itemHiddenClass = "TimelineItem-Hidden";
+  const toggleButtonID = "tidy-timeline-button";
 
-  let status = 'active';
+  let status = "active";
   let numMatchingEvents = 0;
   let pageUrl;
   let monitorInterval;
@@ -27,12 +27,12 @@
   };
 
   const getToggleButton = () => {
-    return document.getElementById(toggleButtonID)
-  }
+    return document.getElementById(toggleButtonID);
+  };
 
   const createToggleButton = () => {
-    const btn = document.createElement('button');
-    btn.setAttribute('id', toggleButtonID);
+    const btn = document.createElement("button");
+    btn.setAttribute("id", toggleButtonID);
     btn.onclick = handleClick;
     document.body.appendChild(btn);
     return btn;
@@ -47,39 +47,41 @@
   };
 
   const updateStatus = (newStatus) => {
-    status = newStatus
-    updateToggleButton(status)
-  }
+    status = newStatus;
+    updateToggleButton(status);
+  };
 
   const updateToggleButton = async (status) => {
     const btn = getToggleButton() || createToggleButton();
 
-    if (status !== 'idle') {
+    if (status !== "idle") {
       numMatchingEvents = getHiddenItems().length;
     }
 
     const count = `${numMatchingEvents} event${
-      numMatchingEvents === 1 ? '' : 's'
+      numMatchingEvents === 1 ? "" : "s"
     }`;
-    const message = status === 'idle' ? `Click to hide ${count}` : `${count} hidden`;
+    const message =
+      status === "idle" ? `Click to hide ${count}` : `${count} hidden`;
     const loader =
-      status === 'loading'
-        ? `<img src='${chrome.runtime.getURL('images/loader.gif')}' />`
-        : '';
-    const icon = status !== 'idle'
-      ? `<span><img src='${chrome.runtime.getURL('images/32.png')}' /></span>`
-      : '';
+      status === "loading"
+        ? `<img src='${chrome.runtime.getURL("images/loader.gif")}' />`
+        : "";
+    const icon =
+      status !== "idle"
+        ? `<span><img src='${chrome.runtime.getURL("images/32.png")}' /></span>`
+        : "";
 
     btn.innerHTML = icon + message + loader;
     await new Promise((res) => setTimeout(res, 10));
-    btn.classList.add('visible')
+    btn.classList.add("visible");
   };
 
   const loadMoreIfAvailable = () => {
-    const loadMoreBtn = querySelectorIncludesText('button', 'Load more');
+    const loadMoreBtn = querySelectorIncludesText("button", "Load more");
     if (loadMoreBtn) {
       loadMoreBtn.click();
-      updateStatus('loading');
+      updateStatus("loading");
       return true;
     }
     return false;
@@ -94,7 +96,7 @@
         hideEvent(el);
       }
     });
-    updateStatus('active');
+    updateStatus("active");
     const loading = loadMoreIfAvailable();
     if (!loading) {
       stopWatching();
@@ -104,7 +106,7 @@
   const observer = new MutationObserver((mutations) => {
     const timelineChanges = mutations.find((mutation) => {
       return [...mutation.addedNodes]
-        .map((m) => m.className && m.className.includes('js-timeline-item'))
+        .map((m) => m.className && m.className.includes("js-timeline-item"))
         .includes(true);
     });
     if (timelineChanges) {
@@ -131,11 +133,11 @@
     getHiddenItems().forEach((el) => {
       showEvent(el);
     });
-    updateStatus('idle');
+    updateStatus("idle");
   };
 
   const handleClick = () => {
-    if (status==='active') {
+    if (status === "active") {
       deactivate();
     } else {
       tidyTimeline();
@@ -145,7 +147,7 @@
   const hideToggleButton = async () => {
     const btn = getToggleButton();
     if (btn) {
-      btn.classList.remove('visible')
+      btn.classList.remove("visible");
     }
   };
 
@@ -154,7 +156,9 @@
     if (newPageUrl !== pageUrl) {
       pageUrl = newPageUrl;
       await new Promise((res) => setTimeout(res, 500));
-      const timeline = document.querySelectorAll('.pull-discussion-timeline')[0];
+      const timeline = document.querySelectorAll(
+        ".pull-discussion-timeline"
+      )[0];
       if (timeline) {
         startWatchingForTimelineChanges(timeline);
         tidyTimeline();
@@ -171,15 +175,15 @@
   };
 
   window.addEventListener(
-    'load',
+    "load",
     function load() {
-      window.removeEventListener('load', load, false);
+      window.removeEventListener("load", load, false);
       initialise();
     },
     false
   );
 
-  document.addEventListener('visibilitychange', function () {
+  document.addEventListener("visibilitychange", function () {
     if (document.hidden) {
       clearInterval(monitorInterval);
     } else {
