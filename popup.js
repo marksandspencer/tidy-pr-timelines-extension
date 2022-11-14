@@ -1,4 +1,4 @@
-function getAllPhases() {
+const getAllPhases = () => {
   return PHRASES_TO_HIDE.map((e) => `<h6>*${e}*</h6>`).join(" ");
 }
 
