@@ -22,13 +22,13 @@
 
   const querySelectorIncludesText = (selector, text) => {
     return Array.from(document.querySelectorAll(selector)).find((el) =>
-      el.textContent.includes(text)
+      el.textContent.includes(text),
     );
   };
 
   const getToggleButton = () => {
-    return document.getElementById(toggleButtonID)
-  }
+    return document.getElementById(toggleButtonID);
+  };
 
   const createToggleButton = () => {
     const btn = document.createElement('button');
@@ -47,9 +47,9 @@
   };
 
   const updateStatus = (newStatus) => {
-    status = newStatus
-    updateToggleButton(status)
-  }
+    status = newStatus;
+    updateToggleButton(status);
+  };
 
   const updateToggleButton = async (status) => {
     const btn = getToggleButton() || createToggleButton();
@@ -58,21 +58,18 @@
       numMatchingEvents = getHiddenItems().length;
     }
 
-    const count = `${numMatchingEvents} event${
-      numMatchingEvents === 1 ? '' : 's'
-    }`;
+    const count = `${numMatchingEvents} event${numMatchingEvents === 1 ? '' : 's'}`;
     const message = status === 'idle' ? `Click to hide ${count}` : `${count} hidden`;
     const loader =
-      status === 'loading'
-        ? `<img src='${chrome.runtime.getURL('images/loader.gif')}' />`
+      status === 'loading' ? `<img src='${chrome.runtime.getURL('images/loader.gif')}' />` : '';
+    const icon =
+      status !== 'idle'
+        ? `<span><img src='${chrome.runtime.getURL('images/32.png')}' /></span>`
         : '';
-    const icon = status !== 'idle'
-      ? `<span><img src='${chrome.runtime.getURL('images/32.png')}' /></span>`
-      : '';
 
     btn.innerHTML = icon + message + loader;
     await new Promise((res) => setTimeout(res, 10));
-    btn.classList.add('visible')
+    btn.classList.add('visible');
   };
 
   const loadMoreIfAvailable = () => {
@@ -87,9 +84,7 @@
 
   const tidyTimeline = () => {
     getItems().forEach((el) => {
-      const shouldHide = PHRASES_TO_HIDE.find((phrase) =>
-        el.innerText.includes(phrase)
-      );
+      const shouldHide = PHRASES_TO_HIDE.find((phrase) => el.innerText.includes(phrase));
       if (shouldHide) {
         hideEvent(el);
       }
@@ -135,7 +130,7 @@
   };
 
   const handleClick = () => {
-    if (status==='active') {
+    if (status === 'active') {
       deactivate();
     } else {
       tidyTimeline();
@@ -145,7 +140,7 @@
   const hideToggleButton = async () => {
     const btn = getToggleButton();
     if (btn) {
-      btn.classList.remove('visible')
+      btn.classList.remove('visible');
     }
   };
 
@@ -176,7 +171,7 @@
       window.removeEventListener('load', load, false);
       initialise();
     },
-    false
+    false,
   );
 
   document.addEventListener('visibilitychange', function () {
