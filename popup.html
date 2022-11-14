@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Hide GitHub Events</title>
+    <link rel="stylesheet" href="popup.css" />
+    <script src="filters.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="headline">
+        <img src="/images/32.png" alt="Logo" width="32px" />
+        <span> Hide GitHub PR Events </span>
+      </div>
+      <hr />
+      <div>
+        <p>
+          This plugin filters certain Github PR events from the PR timeline using below regex
+          phrases
+        </p>
+        <div class="filterContainer" id="filterData"></div>
+      </div>
+    </div>
+    <footer>
+      Powered by M&S.
+      <a target="_blank" href="https://github.com/marksandspencer/tidy-pr-timelines-extension"
+        >Contribute here</a
+      >
+      |
+      <a
+        target="_blank"
+        href="https://github.com/marksandspencer/tidy-pr-timelines-extension/issues"
+        >Raise Issue</a
+      >
+    </footer>
+    <script src="popup.js"></script>
+  </body>
+</html>
